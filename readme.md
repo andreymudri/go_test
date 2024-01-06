@@ -7,6 +7,10 @@ Also using a ListNode struct.
 
 Project port as of right now is hard-coded on 8080(first commit or so).
 
+
+## Hosted at:
+https://go-test-awus.onrender.com/
+
 ## Local Deployment
 
 Clone the project
@@ -34,15 +38,13 @@ or you can use Docker.
   docker compose up --build
 ```
 
-##Running Tests
+## Running Tests
 
 To run tests, run the following command
 
 ```bash
 go test -v ./...
 ```
-
-````
 
 
 ## API Usage
@@ -56,8 +58,8 @@ example body:
   "List1":[11,2,5,4],
   "List2":[666,999,111,1]
 }
-````
+```
 
-#####GET /merge
+##### GET /merge
 
 Should returns a sorted array provided that you given 2 arrays in the previous endpoint
