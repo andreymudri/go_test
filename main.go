@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 	"sort"
+	"./src/helper"
 )
 
 type ListNode struct {
@@ -60,6 +61,13 @@ func mergeHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodGet {
 		http.Error(w, "Invalid request method", http.StatusMethodNotAllowed)
 		return
+	}
+	//checar se as listas estão vazias
+	if savedLists[0] == nil || savedLists[1] == nil {
+		w.Header().Set("Content-Type", "application/json")
+	  w.WriteHeader(http.StatusNoContent)
+	  json.NewEncoder(w).Encode("Listas vazias")
+	  return
 	}
 
 	merged := mergeTwoLists(savedLists[0], savedLists[1])
