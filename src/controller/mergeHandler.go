@@ -2,9 +2,7 @@ package controller
 
 import (
 	"encoding/json"
-	"log"
 	"net/http"
-
 	"github.com/andreymudri/go_test/src/helper"
 	"github.com/andreymudri/go_test/src/types"
 )
@@ -43,7 +41,7 @@ func MergeHandler(w http.ResponseWriter, r *http.Request) {
 
 // Função que recebe duas listas ligadas e retorna uma lista ligada numericamente crescente
 func mergeTwoLists(list1 *types.ListNode, list2 *types.ListNode) *types.ListNode {
-		
+
 	mergedList := &types.ListNode{}
 	head := mergedList
 	// Percorrer as duas listas ligadas ao mesmo tempo
