@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"net/http/httptest"
 	"testing"
+	"github.com/andreymudri/go_test/src/controller"
 )
 
 func TestHelloWorld(t *testing.T) {
@@ -21,7 +22,7 @@ func TestHelloWorld(t *testing.T) {
 }
 
 func TestListSave(t *testing.T) {
-	server := httptest.NewServer(http.HandlerFunc(saveListHandler))
+	server := httptest.NewServer(http.HandlerFunc(controller.SaveListHandler))
 	body := map[string][]int{
 		"List1": {1, 2, 3},
 		"List2": {4, 5, 6},
@@ -42,7 +43,7 @@ func TestListSave(t *testing.T) {
 }
 
 func TestListMerge(t *testing.T) {
-	server := httptest.NewServer(http.HandlerFunc(saveListHandler))
+	server := httptest.NewServer(http.HandlerFunc(controller.SaveListHandler))
 	body := map[string][]int{
 		"List1": {1, 2, 3},
 		"List2": {4, 5, 6},
@@ -60,7 +61,7 @@ func TestListMerge(t *testing.T) {
 	if resp.StatusCode != http.StatusOK {
 		t.Errorf("Status code error, got %v want %v", resp.StatusCode, http.StatusMethodNotAllowed)
 	}
-	serverGet := httptest.NewServer(http.HandlerFunc(mergeHandler))
+	serverGet := httptest.NewServer(http.HandlerFunc(controller.MergeHandler))
 	respGet, errGet := http.Get(serverGet.URL)
 	if errGet != nil {
 		t.Error(errGet)
