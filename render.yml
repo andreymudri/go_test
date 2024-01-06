@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: go_test
+    env: go
+    buildCommand: go build -o ./server
+    startCommand: ./server
+    envVars:
+      - key: PORT
+        value: 10000
