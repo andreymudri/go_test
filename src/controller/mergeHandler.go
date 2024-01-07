@@ -6,7 +6,8 @@ import (
 	"github.com/andreymudri/go_test/src/helper"
 	"github.com/andreymudri/go_test/src/types"
 )
-
+const ContentType = "Content-Type"
+const ApplicationJSON = "application/json"
 // Função que recebe duas listas ligadas e retorna uma lista ligada mesclada
 func MergeHandler(w http.ResponseWriter, r *http.Request) {
 
@@ -16,13 +17,13 @@ func MergeHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	//checar se as listas estão vazias
 	if SavedLists == nil {
-		w.Header().Set("Content-Type", "application/json")
+		w.Header().Set(ContentType, ApplicationJSON)
 		w.WriteHeader(http.StatusNoContent)
 		json.NewEncoder(w).Encode("Listas vazias")
 		return
 	}
 	if SavedLists[0] == nil || SavedLists[1] == nil {
-		w.Header().Set("Content-Type", "application/json")
+		w.Header().Set(ContentType, ApplicationJSON)
 		w.WriteHeader(http.StatusNoContent)
 		json.NewEncoder(w).Encode("Lista vazias")
 		return
@@ -35,7 +36,7 @@ func MergeHandler(w http.ResponseWriter, r *http.Request) {
 	// transformar lista ligada em lista de inteiros
 	result := helper.ListNodetoSortedArray(merged)
 	// enviar a response merged
-	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set(ContentType, ApplicationJSON)
 	json.NewEncoder(w).Encode(result)
 }
 
